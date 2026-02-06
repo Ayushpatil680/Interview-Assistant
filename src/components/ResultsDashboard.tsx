@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { ScoreRing } from "@/components/ui/score-ring";
 import { AssessmentResult } from "@/types/assessment";
 import { categoryLabels } from "@/data/questions";
+import { generatePDFReport } from "@/lib/pdf-export";
 import {
-  ArrowRight,
   CheckCircle,
   Clock,
   Target,
@@ -12,6 +12,7 @@ import {
   RefreshCw,
   Sparkles,
   AlertCircle,
+  Download,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -239,6 +240,14 @@ export const ResultsDashboard = ({ result, onRestart }: ResultsDashboardProps) =
           <Button variant="outline" onClick={onRestart} className="gap-2">
             <RefreshCw className="w-4 h-4" />
             Retake Assessment
+          </Button>
+          <Button 
+            variant="hero" 
+            onClick={() => generatePDFReport(result)} 
+            className="gap-2"
+          >
+            <Download className="w-4 h-4" />
+            Download PDF Report
           </Button>
         </motion.div>
       </div>
